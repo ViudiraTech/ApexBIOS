@@ -1,33 +1,33 @@
 /*
- *		endianness.c
- *		字节序转换相关
+ *      endianness.c
+ *      Byte order conversion related
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #include "endianness.h"
 
-/* 交换8位字节的高4位和低4位 */
+/* Swap the high 4 bits and low 4 bits of an 8-bit byte */
 uint8_t swapendianness8(uint8_t byte)
 {
-	return (byte >> 4) | (byte << 4);
+    return (byte >> 4) | (byte << 4);
 }
 
-/* 交换16位字的高8位和低8位 */
+/* Swap the upper and lower 8 bits of a 16-bit word */
 uint16_t swapendianness16(uint16_t byte)
 {
-	return (byte >> 8) | (byte << 8);
+    return (byte >> 8) | (byte << 8);
 }
 
-/* 交换32位字的字节序 */
+/* Swap the byte order of 32-bit words */
 uint32_t swapendianness32(uint32_t byte)
 {
-	return ((byte >> 8) & 0x0000FF00) | ((byte >> 24) & 0x000000FF) |((byte << 24) & 0xFF000000) | ((byte << 8) & 0x00FF0000);
+    return ((byte >> 8) & 0x0000FF00) | ((byte >> 24) & 0x000000FF) | ((byte << 24) & 0xFF000000) | ((byte << 8) & 0x00FF0000);
 }
 
-/* 交换64位字的字节序 */
+/* Swap the byte order of 64-bit words */
 uint64_t swapendianness64(uint64_t byte)
 {
-	return ((uint64_t) swapendianness32(byte & 0xFFFFFFFF) << 32) | swapendianness32((byte >> 32) & 0xFFFFFFFF);
+    return ((uint64_t)swapendianness32(byte & 0xFFFFFFFF) << 32) | swapendianness32((byte >> 32) & 0xFFFFFFFF);
 }

@@ -1,17 +1,17 @@
 /*
- *		ahci.h
- *		ahci驱动头文件
+ *      ahci.h
+ *      ahci driver header file
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_AHCI_H_
 #define INCLUDE_AHCI_H_
 
-#include <stdint.h>
+#include "stdint.h"
 
-/* AHCI控制器是否存在 */
+/* Is AHCI controller present */
 uint8_t ahci_detect_controller(void);
 
 #endif // INCLUDE_AHCI_H_

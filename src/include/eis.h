@@ -1,34 +1,34 @@
 /*
- *		eis.h
- *		指令集相关头文件
+ *      eis.h
+ *      Instruction set related header files
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_EIS_H_
 #define INCLUDE_EIS_H_
 
-#include <stdint.h>
-#include "ramfb.h"
 #include "cpuid.h"
+#include "ramfb.h"
+#include "stdint.h"
 
-/* FPU是否存在 */
+/* Does FPU exist */
 int fpu_detect(void);
 
-/* FPU初始化 */
+/* FPU initialization */
 void fpu_init(void);
 
-/* SSE指令集是否存在 */
+/* Does the SSE instruction set exist */
 int sse_detect(void);
 
-/* SSE指令集初始化 */
+/* SSE instruction set initialization */
 void sse_init(void);
 
-/* AVX指令集是否存在 */
+/* Does the AVX instruction set exist */
 int avx_detect(void);
 
-/* AVX指令集初始化 */
+/* AVX instruction set initialization */
 void avx_init(void);
 
 #endif // INCLUDE_EIS_H_

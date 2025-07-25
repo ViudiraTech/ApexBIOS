@@ -1,54 +1,56 @@
-# ApexBIOS 项目
+# ApexBIOS Project
 
-## 欢迎探索 ApexBIOS！
+## Welcome to explore ApexBIOS!
 
-这是一个开源的 BIOS 项目，旨在为qemu平台提供灵活、可定制的启动固件。我们的目标是创建一个稳定、高效且易于扩展的 BIOS 系统，以满足不同用户的需求。
+This is an open source BIOS project that aims to provide flexible and customizable boot firmware for the qemu platform. Our goal is to create a stable, efficient and easily extensible BIOS system to meet the needs of different users.
 
-### 核心功能
+### Core functions
 
-- **多指令集支持**：自动检测并初始化 SSE、AVX 和 FPU 指令集，充分发挥 CPU 的计算能力。
-- **丰富的硬件兼容性**：支持 Q35、i440FX 等多种芯片组，以及 AHCI、IDE、软盘等多种存储设备。
-- **图形化界面**：基于 RAMFB 的图形显示驱动，提供清晰的启动界面和设备信息显示。
-- **灵活的启动选项**：可从硬盘设备启动，支持启动设备的自动检测。
+- **Multiple instruction set support**: Automatically detect and initialize SSE, AVX and FPU instruction sets to give full play to the computing power of the CPU.
+- **Rich hardware compatibility**: Supports multiple chipsets such as Q35, i440FX, and multiple storage devices such as AHCI, IDE, and floppy disks.
+- **Graphical interface**: Graphical display driver based on RAMFB, providing a clear startup interface and device information display.
+- **Flexible startup options**: Can be started from a hard disk device, supporting automatic detection of the startup device.
 
-### 技术细节
+### Technical details
 
-#### 保护模式入口
+#### Protected mode entry
 
-BIOS 在启动时会进入保护模式，这是通过 `protectedmode.c` 实现的。在保护模式下，BIOS 可以访问更多的内存和系统资源，提供更强大的功能。以下是保护模式入口的主要步骤：
+BIOS will enter protected mode at startup, which is implemented by `protectedmode.c`. In protected mode, BIOS can access more memory and system resources, providing more powerful functions. The following are the main steps of protected mode entry:
 
-1. **初始化指令集**：检测并初始化 SSE、AVX 和 FPU 指令集。
-2. **初始化硬件**：初始化 PIC、PS/2、软盘、RAMFB 等硬件设备。
-3. **显示启动信息**：使用 RAMFB 显示启动界面和系统信息。
-4. **检测存储设备**：检测并显示 AHCI、IDE、软盘等存储设备的状态。
-5. **尝试引导**：从检测到的存储设备中尝试引导系统。
+1. **Initialize instruction set**: Detect and initialize SSE, AVX and FPU instruction sets.
+2. **Initialize hardware**: Initialize PIC, PS/2, floppy disk, RAMFB and other hardware devices.
+3. **Display startup information**: Use RAMFB to display the startup interface and system information.
+4. **Detect storage device**: Detect and display the status of storage devices such as AHCI, IDE, floppy disk.
+5. **Try to boot**: Try to boot the system from the detected storage device.
 
-#### 传统读盘 55AA 方式启动
+#### Traditional disk reading 55AA method boot
 
-BIOS 支持传统的 55AA 方式启动，这是通过读取硬盘的 MBR（主引导记录）来实现的。具体步骤如下：
+BIOS supports traditional 55AA booting, which is achieved by reading the MBR (Master Boot Record) of the hard disk. The specific steps are as follows:
 
-1. **清空启动扇区**：使用 `memset` 清空 0x7C00 地址处的 512 字节。
-2. **读取 MBR**：使用 `ata_read_lba` 从硬盘的 LBA 0 位置读取 512 字节到 0x7C00 地址。
-3. **检查启动标志**：检查 0x7DFE 位置的值是否为 0xAA55，这是有效的 MBR 启动标志。
-4. **跳转到启动代码**：如果启动标志有效，跳转到 0x7C00 地址执行启动代码。
+1. **Clear boot sector**: Use `memset` to clear 512 bytes at address 0x7C00.
+2. **Read MBR**: Use `ata_read_lba` to read 512 bytes from LBA 0 of the hard disk to address 0x7C00.
+3. **Check boot flag**: Check if the value at position 0x7DFE is 0xAA55, which is a valid MBR boot flag.
+4. **Jump to boot code**: If the boot flag is valid, jump to address 0x7C00 to execute the boot code.
 
-### 项目架构
+### Project architecture
 
-- **保护模式入口**：`protectedmode.c` 作为 BIOS 的核心入口，负责初始化各个硬件组件和系统服务。
-- **内存管理**：`memory.c` 提供了高效的内存检测和管理功能，确保系统启动过程中的内存分配和使用。
-- **位图字体与图像解析**：`bmpfont.c` 和 `bitmap.c` 实现了位图字体和图像的解析与显示，为图形化界面提供了基础支持。
-- **字符串处理**：`cstring.c` 提供了基本的字符串处理功能，方便系统内部的文本操作和显示。
-- **字节序转换**：`endianness.c` 实现了不同字节序之间的转换，确保数据在不同硬件平台上的正确传输和处理。
-- **硬件驱动**：包括 PCI、PS2、ATAPI、AHCI、软盘等硬件驱动，实现了对各种硬件设备的检测、初始化和操作。
+- **Protected mode entry**: `protectedmode.c` is the core entry of BIOS, responsible for initializing various hardware components and system services.
+- **Memory management**: `memory.c` provides efficient memory detection and management functions to ensure memory allocation and use during system startup.
+- **Bitmap font and image parsing**: `bmpfont.c` and `bitmap.c` implement the parsing and display of bitmap fonts and images, providing basic support for the graphical interface.
+- **String processing**: `cstring.c` provides basic string processing functions to facilitate text operations and display within the system.
+- **Byte order conversion**: `endianness.c` implements conversion between different byte orders to ensure correct transmission and processing of data on different hardware platforms.
+- **Hardware driver**: Including PCI, PS2, ATAPI, AHCI, floppy disk and other hardware drivers, realizing the detection, initialization and operation of various hardware devices.
 
-### 开发与贡献
+### Development and contribution
 
-我们欢迎所有对 BIOS 开发感兴趣的开发者加入我们的项目！无论你是硬件专家、软件工程师还是开源爱好者，都可以在这里找到适合自己的贡献方式。
+We welcome all developers interested in BIOS development to join our project! Whether you are a hardware expert, software engineer or open source enthusiast, you can find a contribution method that suits you here.
 
-- **代码贡献**：如果你熟悉 C 语言和硬件编程，可以参与代码的编写和优化，帮助我们改进 BIOS 的功能和性能。
-- **文档编写**：良好的文档对于项目的成功至关重要。你可以帮助我们编写技术文档、用户手册或开发指南，让其他开发者和用户更容易理解和使用我们的 BIOS。
-- **测试与反馈**：在qemu平台上测试 BIOS，提供详细的测试报告和反馈，帮助我们发现和修复潜在的问题。
+- **Code Contribution**: If you are familiar with C language and hardware programming, you can participate in code writing and optimization to help us improve the functions and performance of BIOS.
 
-### 联系我们
+- **Documentation**: Good documentation is crucial to the success of the project. You can help us write technical documents, user manuals or development guides to make it easier for other developers and users to understand and use our BIOS.
 
-- **项目主页**：[https://github.com/ViudiraTech/ApexBIOS](https://github.com/ViudiraTech/ApexBIOS)
+- **Testing and Feedback**: Test the BIOS on the qemu platform, provide detailed test reports and feedback, and help us find and fix potential problems.
+
+### Contact us
+
+- **Project Homepage**: [https://github.com/ViudiraTech/ApexBIOS](https://github.com/ViudiraTech/ApexBIOS)

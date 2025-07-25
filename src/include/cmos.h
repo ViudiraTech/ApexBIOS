@@ -1,37 +1,37 @@
 /*
- *		cmos.h
- *		cmos存储器头文件
+ *      cmos.h
+ *      CMOS memory header file
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_CMOS_H_
 #define INCLUDE_CMOS_H_
 
-#include <stdint.h>
+#include "stdint.h"
 
 #define bcdtobin(x) (x & 0x0F) + ((x / 16) * 10)
 
-/* 读取CMOS存储器 */
+/* Read CMOS memory */
 uint8_t cmos_get_reg(uint16_t reg);
 
-/* 获取当前的秒数 */
+/* Get the current seconds */
 uint8_t cmos_get_second(void);
 
-/* 获取当前的分钟数 */
+/* Get the current minute */
 uint8_t cmos_get_minute(void);
 
-/* 获取当前的小时数 */
+/* Get the current hour */
 uint8_t cmos_get_hour(void);
 
-/* 获取当前的日期 */
+/* Get the current date */
 uint8_t cmos_get_day(void);
 
-/* 获取当前的月份 */
+/* Get the current month */
 uint8_t cmos_get_month(void);
 
-/* 获取当前的年份 */
+/* Get the current year */
 uint8_t cmos_get_year(void);
 
 #endif // INCLUDE_CMOS_H_

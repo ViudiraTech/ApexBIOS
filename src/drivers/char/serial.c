@@ -1,25 +1,24 @@
 /*
- *		serial.c
- *		RS-232串口驱动
+ *      serial.c
+ *      RS-232 serial port driver
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #include "serial.h"
 
-/* 通过串口发送字符串 */
+/* Sending a string through the serial port */
 void serial_put_str(char *str)
 {
-	for (int i = 0; str[i] != '\0';i++) {
-		if(str[i] == '\n')
-			serial_put_char('\r');
-		serial_put_char(str[i]);    
-	}
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == '\n') serial_put_char('\r');
+        serial_put_char(str[i]);
+    }
 }
 
-/* 通过串口发送单个字符 */
+/* Sending a single character over the serial port */
 void serial_put_char(char ch)
 {
-	outb(COM1, ch);
+    outb(COM1, ch);
 }

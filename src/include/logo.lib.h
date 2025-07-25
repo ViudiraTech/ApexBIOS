@@ -1,15 +1,15 @@
 /*
- *		logo.lib.h
- *		logo库头文件
+ *      logo.lib.h
+ *      Logo library header file
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_LOGO_LIB_H_
 #define INCLUDE_LOGO_LIB_H_
 
-#include <stdint.h>
+#include "stdint.h"
 
 extern uint8_t logo[];
 

@@ -1,9 +1,9 @@
 /*
- *		speaker.h
- *		板载蜂鸣器驱动头文件
+ *      speaker.h
+ *      Onboard buzzer driver header file
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_SPEAKER_H_
@@ -11,13 +11,13 @@
 
 #include "ports.h"
 
-/* 启动PC扬声器发出声音 */
+/* Activate the PC speakers to produce sound */
 uint8_t pc_speaker_play(void);
 
-/* 停止PC扬声器发出声音 */
+/* Stop sound from PC speakers */
 void pc_speaker_stop(void);
 
-/* 发出短暂的蜂鸣声 */
+/* A short beep sounds */
 void pc_speaker_beep(void);
 
 #endif // INCLUDE_SPEAKER_H_

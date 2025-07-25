@@ -1,26 +1,26 @@
 /*
- *		endianness.h
- *		字节序转换相关头文件
+ *      endianness.h
+ *      Byte order conversion related header files
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_ENDIANNESS_H_
 #define INCLUDE_ENDIANNESS_H_
 
-#include <stdint.h>
+#include "stdint.h"
 
-/* 交换8位字节的高4位和低4位 */
+/* Swap the high 4 bits and low 4 bits of an 8-bit byte */
 uint8_t swapendianness8(uint8_t byte);
 
-/* 交换16位字的高8位和低8位 */
+/* Swap the upper and lower 8 bits of a 16-bit word */
 uint16_t swapendianness16(uint16_t byte);
 
-/* 交换32位字的字节序 */
+/* Swap the byte order of 32-bit words */
 uint32_t swapendianness32(uint32_t byte);
 
-/* 交换64位字的字节序 */
+/* Swap the byte order of 64-bit words */
 uint64_t swapendianness64(uint64_t byte);
 
 #endif // INCLUDE_ENDIANNESS_H_

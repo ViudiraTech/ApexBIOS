@@ -1,15 +1,15 @@
 /*
- *		bmpfont.h
- *		位图字体头文件
+ *      bmpfont.h
+ *      Bitmap font header file
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_BMPFONT_H_
 #define INCLUDE_BMPFONT_H_
 
-#include <stdint.h>
+#include "stdint.h"
 
 extern uint8_t BitmapFont[];
 

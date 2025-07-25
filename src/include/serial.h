@@ -1,9 +1,9 @@
 /*
- *		serial.h
- *		RS-232串口驱动头文件
+ *      serial.h
+ *      RS-232 serial port driver header file
  *
- *		基于 GPL-3.0 开源协议
- *		Copyright © 2020 ViudiraTech，保留最终解释权。
+ *      Based on GPL-3.0 open source agreement
+ *      Copyright © 2020 ViudiraTech, based on the GPLv3 agreement.
  */
 
 #ifndef INCLUDE_SERIAL_H_
@@ -13,10 +13,10 @@
 
 #define COM1 0x3F8
 
-/* 通过串口发送字符串 */
+/* Sending a string through the serial port */
 void serial_put_str(char *str);
 
-/* 通过串口发送单个字符 */
+/* Sending a single character over the serial port */
 void serial_put_char(char ch);
 
 #endif // INCLUDE_SERIAL_H_
